@@ -18,6 +18,9 @@ import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.ironsource.mediationsdk.model.Placement;
 import com.ironsource.mediationsdk.sdk.RewardedVideoListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RNIronSourceRewardedVideoModule extends ReactContextBaseJavaModule {
     private static final String TAG = "RNIronSourceRewardedVideo";
     private final ReactApplicationContext reactContext;
@@ -109,6 +112,17 @@ public class RNIronSourceRewardedVideoModule extends ReactContextBaseJavaModule 
                 }
             });
         }
+    }
+
+    @ReactMethod
+    public void setRewardedVideoServerParameters(String data) {
+        IronSource.clearRewardedVideoServerParameters();
+        if (data != null) {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("data", data);
+            IronSource.setRewardedVideoServerParameters(map);
+        }
+
     }
 
     @ReactMethod
